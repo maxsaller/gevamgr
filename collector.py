@@ -104,6 +104,7 @@ class LoadCollector(object):
         temp = np.array([self.temp[i] for i in self.hosts])
 
         labels = [i.split(".")[0] for i in self.hosts]
+        slabels = [f"g{i.split('.')[0].split('0')[-1]}" for i in self.hosts]
         x = np.arange(len(labels))
         width = 0.2
 
@@ -126,8 +127,8 @@ class LoadCollector(object):
         ax[1].plot([-0.75, 1.5], [100, 100], color="white", ls="--", lw=0.5)
 
         ax[1].set_xlim([-0.25, 1])
-        ax[1].set_xticks(0.25*x, labels, rotation=90, color="black")
-        ax[1].tick_params(axis="x", direction="in", pad=-45)
+        ax[1].set_xticks(0.25*x, slabels, rotation=0, color="white")
+        ax[1].tick_params(axis="x", direction="out") #, pad=0)
         ax[1].set_ylim([25, 105])
         ax[1].set_yticks([25, 50, 75, 100])
         ax[1].set_ylabel("Temperature (°C)", fontsize="x-large")
